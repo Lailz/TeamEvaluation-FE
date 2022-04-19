@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Material UI
 import Avatar from "@mui/material/Avatar";
@@ -11,9 +12,14 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 
+// Actions
+import { signup } from "../../store/slices/authSlice";
+
 function Signup() {
+  const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(signup());
   };
 
   return (

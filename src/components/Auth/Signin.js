@@ -8,10 +8,15 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signin } from "../../store/slices/authSlice";
 
 function Signin() {
+  const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("SIGNIN");
+    dispatch(signin());
   };
 
   return (
