@@ -6,6 +6,7 @@ import SemesterList from "./components/Semester/SemesterList";
 function App() {
   return (
     <div>
+      <Navbar />
       <Routes />
     </div>
   );
