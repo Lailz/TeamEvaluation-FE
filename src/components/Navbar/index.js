@@ -10,9 +10,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { useDispatch } from "react-redux";
+import { signout } from "../../store/slices/authSlice";
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,6 +23,11 @@ function Navbar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSignout = () => {
+    dispatch(signout());
+    handleClose();
   };
 
   return (
@@ -65,7 +73,7 @@ function Navbar() {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleSignout}>Sign out</MenuItem>
             </Menu>
           </div>
         </Toolbar>
