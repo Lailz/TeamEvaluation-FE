@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../api";
 
 const initialState = {
   user: null,
@@ -8,7 +8,15 @@ const initialState = {
 export const signin = createAsyncThunk(
   "auth/signin",
   async (user, thunkAPI) => {
-    const res = await axios.post("http://127.0.0.1:8000/signin", user);
+    const res = await api.post("/signin", user);
+    return res.data;
+  }
+);
+
+export const signup = createAsyncThunk(
+  "auth/signup",
+  async (user, thunkAPI) => {
+    const res = await api.post("/signup", user);
     return res.data;
   }
 );
@@ -17,9 +25,6 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signup: (state) => {
-      console.log("signup");
-    },
     signout: (state) => {
       console.log("signout");
     },
@@ -28,9 +33,12 @@ export const authSlice = createSlice({
     builder.addCase(signin.fulfilled, (state, action) => {
       state.user = action.payload;
     });
+    builder.addCase(signup.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
   },
 });
 
-export const { signup, signout } = authSlice.actions;
+export const { signout } = authSlice.actions;
 
 export default authSlice.reducer;

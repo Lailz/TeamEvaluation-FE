@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -17,9 +18,20 @@ import { signup } from "../../store/slices/authSlice";
 
 function Signup() {
   const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    username: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signup());
+    dispatch(signup(user));
   };
 
   return (
@@ -63,9 +75,9 @@ function Signup() {
               margin="normal"
               required
               fullWidth
-              id="username"
               label="Username"
               name="username"
+              onChange={handleChange}
               autoComplete="username"
               autoFocus
             />
@@ -73,7 +85,8 @@ function Signup() {
               margin="normal"
               fullWidth
               label="First Name"
-              name="firstName"
+              name="first_name"
+              onChange={handleChange}
               autoComplete="firstName"
               autoFocus
             />
@@ -81,7 +94,8 @@ function Signup() {
               margin="normal"
               fullWidth
               label="Last Name"
-              name="lastName"
+              name="last_name"
+              onChange={handleChange}
               autoComplete="lastName"
               autoFocus
             />
@@ -91,6 +105,7 @@ function Signup() {
               fullWidth
               label="Email"
               name="email"
+              onChange={handleChange}
               autoComplete="email"
               autoFocus
             />
@@ -99,9 +114,9 @@ function Signup() {
               required
               fullWidth
               name="password"
+              onChange={handleChange}
               label="Password"
               type="password"
-              id="password"
               autoComplete="current-password"
             />
             <Button
