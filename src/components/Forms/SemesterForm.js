@@ -6,6 +6,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Button,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
@@ -16,10 +17,14 @@ import { createSemester } from "../../store/slices/semesterSlice";
 const SemesterForm = () => {
   const dispatch = useDispatch();
 
+  const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [semester, setSemester] = useState({
     name: "",
   });
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -31,7 +36,7 @@ const SemesterForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createSemester(semester));
-    handleAccordion(!expanded);
+    handleOpen();
     setSemester({ name: "" });
   };
 
@@ -50,6 +55,7 @@ const SemesterForm = () => {
             label="Semester Name"
             name="name"
             onChange={handleChange}
+            value={semester.name}
             autoComplete="name"
             autoFocus
           />
@@ -61,6 +67,12 @@ const SemesterForm = () => {
           </Button>
         </Box>
       </AccordionDetails>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={open}
+        onClose={handleClose}
+        message="New semester added!"
+      />
     </Accordion>
   );
 };
