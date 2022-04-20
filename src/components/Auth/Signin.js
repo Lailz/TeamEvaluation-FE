@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 
 // Actions
@@ -18,6 +19,7 @@ import Typography from "@mui/material/Typography";
 
 function Signin() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -28,7 +30,7 @@ function Signin() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signin(user));
+    dispatch(signin({ user, navigate }));
   };
 
   return (
