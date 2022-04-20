@@ -30,8 +30,14 @@ export const signin = createAsyncThunk(
 export const signup = createAsyncThunk(
   "auth/signup",
   async (user, thunkAPI) => {
-    const res = await api.post("/signup", user);
-    return res.data;
+    try {
+      await api.post("/signup", user);
+      const res = await api.post("/signin", user);
+      const _user = setUser(res.data.token);
+      return _user;
+    } catch (error) {
+      thunkAPI.rejectWithValue("Oops! Something went wrong");
+    }
   }
 );
 
