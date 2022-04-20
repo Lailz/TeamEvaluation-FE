@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { Navigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 // Actions
 import { signin } from "../../store/slices/authSlice";
@@ -19,7 +19,8 @@ import Typography from "@mui/material/Typography";
 
 function Signin() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const _user = useSelector((state) => state.authReducer.user);
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -30,8 +31,9 @@ function Signin() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signin({ user, navigate }));
+    dispatch(signin(user));
   };
+  if (_user) return <Navigate to="/semesters" />;
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
