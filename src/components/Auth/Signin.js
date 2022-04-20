@@ -1,3 +1,11 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// Actions
+import { signin, signinMethod } from "../../store/slices/authSlice";
+
+// Material UI
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,16 +15,20 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signin } from "../../store/slices/authSlice";
 
 function Signin() {
   const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("SIGNIN");
-    dispatch(signin());
+    dispatch(signin(user));
   };
 
   return (
@@ -63,6 +75,7 @@ function Signin() {
               id="username"
               label="Username"
               name="username"
+              onChange={handleChange}
               autoComplete="username"
               autoFocus
             />
@@ -71,6 +84,7 @@ function Signin() {
               required
               fullWidth
               name="password"
+              onChange={handleChange}
               label="Password"
               type="password"
               id="password"
