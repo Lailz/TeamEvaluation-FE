@@ -35,7 +35,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     signout: (state) => {
-      console.log("signout");
+      state.user = null;
+      delete api.defaults.headers.common.Authorization;
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
