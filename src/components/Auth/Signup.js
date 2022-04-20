@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Navigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 // Material UI
 import Avatar from "@mui/material/Avatar";
@@ -18,6 +19,8 @@ import { signup } from "../../store/slices/authSlice";
 
 function Signup() {
   const dispatch = useDispatch();
+  const _user = useSelector((state) => state.authReducer.user);
+
   const [user, setUser] = useState({
     username: "",
     first_name: "",
@@ -34,6 +37,7 @@ function Signup() {
     dispatch(signup(user));
   };
 
+  if (_user) return <Navigate to="/semesters" />;
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       <CssBaseline />

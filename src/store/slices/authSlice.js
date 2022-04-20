@@ -15,11 +15,10 @@ const setUser = (token) => {
 
 export const signin = createAsyncThunk(
   "auth/signin",
-  async ({ user, navigate }, thunkAPI) => {
+  async (user, thunkAPI) => {
     try {
       const res = await api.post("/signin", user);
       const _user = setUser(res.data.token);
-      navigate("/semesters");
       return _user;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! Something went wrong");
