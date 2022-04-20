@@ -15,15 +15,8 @@ const SemesterItem = ({ semester }) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <Accordion
-      expanded={expanded === "panel1"}
-      onChange={handleChange("panel1")}
-    >
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1bh-content"
-        id="panel1bh-header"
-      >
+    <Accordion expanded={expanded} onChange={handleChange(!expanded)}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography sx={{ width: "33%", flexShrink: 0 }}>
           {semester.name}
         </Typography>

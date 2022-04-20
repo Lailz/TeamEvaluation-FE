@@ -12,21 +12,14 @@ const ProjectItem = ({ project }) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <Accordion
-      expanded={expanded === "panel1"}
-      onChange={handleChange("panel1")}
-    >
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1bh-content"
-        id="panel1bh-header"
-      >
+    <Accordion expanded={expanded} onChange={handleChange(!expanded)}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography sx={{ width: "33%", flexShrink: 0 }}>
           {project.name}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>TODO: Teams maybe?</Typography>
+        <Typography>TODO: Teams</Typography>
       </AccordionDetails>
     </Accordion>
   );

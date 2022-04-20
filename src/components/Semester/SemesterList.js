@@ -31,12 +31,10 @@ function SemesterList() {
   ));
 
   return (
-    <div>
-      <Container>
-        <h1>Semesters</h1>
-        {semesterList}
-      </Container>
-    </div>
+    <Container>
+      <h1>Semesters</h1>
+      {semesterList}
+    </Container>
   );
 }
 
