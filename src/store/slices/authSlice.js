@@ -1,15 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import decode from "jwt-decode";
 import api from "../api";
 
 const initialState = {
   user: null,
 };
 
+const setUser = (token) => {
+  const user = decode(token);
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  localStorage.setItem("token", token);
+  return user;
+};
+
 export const signin = createAsyncThunk(
   "auth/signin",
   async (user, thunkAPI) => {
     const res = await api.post("/signin", user);
-    return res.data;
+    const _user = setUser(res.data.token);
+    return _user;
   }
 );
 
