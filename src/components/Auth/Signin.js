@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 // Actions
-import { signin, signinMethod } from "../../store/slices/authSlice";
+import { signin } from "../../store/slices/authSlice";
 
 // Material UI
 import Avatar from "@mui/material/Avatar";
