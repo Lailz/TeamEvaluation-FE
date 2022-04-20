@@ -12,11 +12,6 @@ import { Container } from "@mui/material";
 import Loading from "../Loading";
 import { Navigate } from "react-router";
 
-// const semesters = [
-//   { id: 1, name: "Semester Hell" },
-//   { id: 2, name: "Semester Heaven" },
-// ];
-
 function SemesterList() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);

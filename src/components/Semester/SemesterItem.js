@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+
+// Material UI
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ProjectList from "../Project/ProjectList";
 
 const SemesterItem = ({ semester }) => {
   const [expanded, setExpanded] = useState(false);
@@ -26,9 +29,7 @@ const SemesterItem = ({ semester }) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>
-          TODO: To be replaced by an accordion of projects
-        </Typography>
+        <ProjectList projects={semester.projects} />
       </AccordionDetails>
     </Accordion>
   );
