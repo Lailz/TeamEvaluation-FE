@@ -39,6 +39,24 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    checkForToken: (state) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const currentTime = Date.now();
+        const user = decode(token);
+        console.log(
+          "🚀 ~ file: authSlice.js ~ line 48 ~ currentTime",
+          currentTime
+        );
+        console.log("🚀 ~ file: authSlice.js ~ line 48 ~ user.exp", user.exp);
+        if (user.exp >= currentTime / 1000) {
+          const user = setUser(token);
+          state.user = user;
+        } else {
+          localStorage.removeItem("token");
+        }
+      }
+    },
     signout: (state) => {
       state.user = null;
       delete api.defaults.headers.common.Authorization;
@@ -55,6 +73,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { signout } = authSlice.actions;
+export const { checkForToken, signout } = authSlice.actions;
 
 export default authSlice.reducer;

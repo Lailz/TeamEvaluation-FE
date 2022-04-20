@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./slices/authSlice";
+import authReducer, { checkForToken } from "./slices/authSlice";
 import semesterReducer from "./slices/semesterSlice";
 
 export const store = configureStore({
@@ -8,3 +8,5 @@ export const store = configureStore({
     semesterReducer: semesterReducer,
   },
 });
+
+store.dispatch(checkForToken());
