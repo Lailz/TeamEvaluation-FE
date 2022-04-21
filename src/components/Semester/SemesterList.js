@@ -11,6 +11,7 @@ import SemesterItem from "./SemesterItem";
 import { Container } from "@mui/material";
 import Loading from "../Loading";
 import { Navigate } from "react-router";
+import SemesterForm from "../Forms/SemesterForm";
 
 function SemesterList() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function SemesterList() {
   return (
     <Container>
       <h1>Semesters</h1>
+      <SemesterForm />
       {semesterList}
     </Container>
   );

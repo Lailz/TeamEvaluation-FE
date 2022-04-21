@@ -22,7 +22,7 @@ const SemesterItem = ({ semester }) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {semester.projects.length > 0 ? (
+        {semester.projects?.length > 0 ? (
           <ProjectList projects={semester.projects} />
         ) : (
           <h4>No Projects Yet</h4>
