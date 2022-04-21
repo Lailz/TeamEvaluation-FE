@@ -21,6 +21,7 @@ const SemesterForm = () => {
   const [expanded, setExpanded] = useState(false);
   const [semester, setSemester] = useState({
     name: "",
+    projects: [],
   });
 
   const handleOpen = () => setOpen(true);
