@@ -30,6 +30,22 @@ export const createSemester = createAsyncThunk(
   }
 );
 
+export const createProject = createAsyncThunk(
+  "semester/project/create",
+  async ({ semester, project, handleClose }, thunkAPI) => {
+    try {
+      const res = await api.post(
+        `/semesters/${semester.id}/projects/`,
+        project
+      );
+      handleClose();
+      return res.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue("Oops! something went wrong.");
+    }
+  }
+);
+
 export const semesterSlice = createSlice({
   name: "semester",
   initialState,
@@ -40,6 +56,13 @@ export const semesterSlice = createSlice({
     });
     builder.addCase(createSemester.fulfilled, (state, action) => {
       state.semesters = [action.payload, ...state.semesters];
+    });
+    builder.addCase(createProject.fulfilled, (state, action) => {
+      const semester = state.semesters.find(
+        (_semester) => _semester.id === action.payload.semester
+      );
+
+      semester.projects.push(action.payload);
     });
   },
 });
