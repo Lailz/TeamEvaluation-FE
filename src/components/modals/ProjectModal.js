@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
+// Components
+import CriteriaSelector from "../Criteria/CriteriaSelector";
+
 // MUI
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { modalStyle } from "./styles";
@@ -58,6 +61,7 @@ function ProjectModal({ semester }) {
             InputProps={{ inputProps: { min: 0, max: 100 } }}
             autoFocus
           />
+          <CriteriaSelector />
           <Button
             type="submit"
             fullWidth
