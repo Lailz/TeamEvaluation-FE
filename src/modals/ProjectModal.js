@@ -21,7 +21,7 @@ function ProjectModal() {
 
   return (
     <>
-      <Button onClick={handleOpen}>Add Project</Button>
+      <Button onClick={handleOpen}>New Project</Button>
       <Modal open={open} onClose={handleClose}>
         <Box component="form" sx={modalStyle}>
           <TextField
