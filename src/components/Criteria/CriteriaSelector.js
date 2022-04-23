@@ -3,16 +3,10 @@ import { useSelector } from "react-redux";
 
 // MUI
 import { useTheme } from "@mui/material/styles";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-} from "@mui/material";
+import { FormControl, InputLabel, OutlinedInput, Select } from "@mui/material";
 
 // Styles
-import { getStyles, MenuProps } from "./styles";
+import { MenuProps } from "./styles";
 import SelectedCriteria from "./SelectedCriteria";
 import CriteriaItem from "./CriteriaItem";
 

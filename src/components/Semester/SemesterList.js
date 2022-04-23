@@ -20,10 +20,8 @@ function SemesterList() {
   const loading = useSelector((state) => state.semesterReducer.loading);
 
   useEffect(() => {
-    if (user) {
-      dispatch(semesterListFetch());
-    }
-  }, []);
+    if (user) dispatch(semesterListFetch());
+  }, [user, dispatch]);
 
   if (!user) return <Navigate to="/signin" />;
   if (loading) return <Loading />;

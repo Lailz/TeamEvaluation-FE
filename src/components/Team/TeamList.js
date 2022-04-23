@@ -1,7 +1,11 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
-const TeamList = ({ teams }) => {
+const TeamList = ({ projectId }) => {
+  const teams = useSelector((state) =>
+    state.teamReducer.teams.filter((team) => team.project === projectId)
+  );
   return (
     <Typography>Teams: {teams.map((team) => `${team.name}, `)}</Typography>
   );
