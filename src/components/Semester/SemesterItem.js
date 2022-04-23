@@ -7,7 +7,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ProjectList from "../Project/ProjectList";
-import ProjectModal from "../../modals/ProjectModal";
+import ProjectModal from "../modals/ProjectModal";
 
 const SemesterItem = ({ semester }) => {
   const [expanded, setExpanded] = useState(false);
