@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // MUI
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { modalStyle } from "./styles";
 
-function ProjectModal() {
-  const [open, setOpen] = useState(false);
+// Slices
+import { createProject } from "../store/slices/semesterSlice";
 
+function ProjectModal({ semester }) {
+  const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
   const [project, setProject] = useState({
     name: "",
     weight: 0,
@@ -19,11 +23,17 @@ function ProjectModal() {
   const handleChange = (event) =>
     setProject({ ...project, [event.target.name]: event.target.value });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createProject({ semester, project, handleClose }));
+  };
+
   return (
     <>
       <Button onClick={handleOpen}>New Project</Button>
       <Modal open={open} onClose={handleClose}>
-        <Box component="form" sx={modalStyle}>
+        <Box component="form" onSubmit={handleSubmit} sx={modalStyle}>
+          <h2>New {semester.name} Project</h2>
           <TextField
             margin="normal"
             fullWidth

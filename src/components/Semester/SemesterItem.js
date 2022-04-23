@@ -30,7 +30,7 @@ const SemesterItem = ({ semester }) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ProjectModal totalWeight={totalWeight} />
+        <ProjectModal totalWeight={totalWeight} semester={semester} />
         {semester.projects.length > 0 ? (
           <ProjectList projects={semester.projects} />
         ) : (
