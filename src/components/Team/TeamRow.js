@@ -1,6 +1,8 @@
-import { TableCell, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+
+// MUI
+import { TableCell } from "@mui/material";
 
 const TeamRow = ({ projectId }) => {
   const teams = useSelector((state) =>

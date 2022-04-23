@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 // Components
 import TeamList from "../Team/TeamList";
 import TeamModal from "../modals/TeamModal";
