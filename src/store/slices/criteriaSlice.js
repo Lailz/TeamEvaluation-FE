@@ -20,9 +20,10 @@ export const fetchCriteriaList = createAsyncThunk(
 
 export const createCriteria = createAsyncThunk(
   "criteria/create",
-  async (criteria, thunkAPI) => {
+  async ({ criteria, handleClose }, thunkAPI) => {
     try {
       const res = await api.post("/criterias", criteria);
+      handleClose();
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -39,11 +40,9 @@ export const criteriaSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(createCriteria.fulfilled, (state, action) => {
-      state.criterias = [action.payload, ...state.criterias];
+      state.criterias = [...state.criterias, action.payload];
     });
   },
 });
-
-// export const {  } = criteriaSlice.actions;
 
 export default criteriaSlice.reducer;
