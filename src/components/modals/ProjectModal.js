@@ -6,7 +6,7 @@ import CriteriaModal from "./CriteriaModal";
 import CriteriaSelector from "../Criteria/CriteriaSelector";
 
 // MUI
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, TextField } from "@mui/material";
 import { modalStyle } from "./styles";
 
 // Slices
