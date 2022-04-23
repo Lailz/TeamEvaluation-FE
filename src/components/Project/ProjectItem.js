@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+// Components
+import TeamList from "../Team/TeamList";
+import TeamModal from "../modals/TeamModal";
+
+// MUI
+import { Accordion, AccordionSummary, Typography } from "@mui/material";
 
 const ProjectItem = ({ project }) => {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
   return (
-    <Accordion expanded={expanded} onChange={handleChange(!expanded)}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion>
+      <AccordionSummary>
         <Typography sx={{ width: "33%", flexShrink: 0 }}>
           {project.name}
         </Typography>
+
+        {project.teams?.length > 0 ? (
+          <TeamList teams={project.teams} />
+        ) : (
+          <Typography>No teams added yet</Typography>
+        )}
+        <TeamModal project={project} />
       </AccordionSummary>
-      <AccordionDetails>
-        <Typography>TODO: Teams</Typography>
-      </AccordionDetails>
     </Accordion>
   );
 };
