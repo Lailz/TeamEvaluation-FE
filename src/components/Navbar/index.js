@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Actions
 import { signout } from "../../store/slices/authSlice";
@@ -36,7 +36,7 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Team Evaluation
+            <Link to="/semesters">Team Evaluation</Link>
           </Typography>
           {user && (
             <div>
