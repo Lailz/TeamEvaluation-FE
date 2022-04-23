@@ -11,7 +11,7 @@ import SemesterItem from "./SemesterItem";
 import { Container } from "@mui/material";
 import Loading from "../Loading";
 import { Navigate } from "react-router";
-import SemesterForm from "../Forms/SemesterForm";
+import SemesterForm from "./SemesterForm";
 
 function SemesterList() {
   const dispatch = useDispatch();
