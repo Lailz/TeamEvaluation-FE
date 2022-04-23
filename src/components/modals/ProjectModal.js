@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Components
+import CriteriaModal from "./CriteriaModal";
 import CriteriaSelector from "../Criteria/CriteriaSelector";
 
 // MUI
@@ -9,8 +10,7 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { modalStyle } from "./styles";
 
 // Slices
-import { createProject } from "../../store/slices/semesterSlice";
-import CriteriaModal from "./CriteriaModal";
+import { createProject } from "../../store/slices/projectSlice";
 
 function ProjectModal({ semester }) {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ function ProjectModal({ semester }) {
   const [project, setProject] = useState({
     name: "",
     weight: 0,
+    teams: [],
   });
 
   const handleOpen = () => setOpen(true);

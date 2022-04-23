@@ -19,7 +19,7 @@ export const fetchProjectList = createAsyncThunk(
 );
 
 export const createProject = createAsyncThunk(
-  "semester/project/create",
+  "project/create",
   async ({ semester, project, handleClose }, thunkAPI) => {
     try {
       const res = await api.post(
