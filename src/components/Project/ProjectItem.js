@@ -16,7 +16,7 @@ const ProjectItem = ({ project }) => {
         </Typography>
 
         {project.teams?.length > 0 ? (
-          <TeamList teams={project.teams} />
+          <TeamList projectId={project.id} />
         ) : (
           <Typography>No teams added yet</Typography>
         )}
