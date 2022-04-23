@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+// Components
+import SelectedCriteria from "./SelectedCriteria";
+
 // MUI
 import { useTheme } from "@mui/material/styles";
-import { FormControl, InputLabel, OutlinedInput, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+} from "@mui/material";
 
 // Styles
-import { MenuProps } from "./styles";
-import SelectedCriteria from "./SelectedCriteria";
-import CriteriaItem from "./CriteriaItem";
+import { getStyles, MenuProps } from "./styles";
 
 function CriteriaSelector() {
   const theme = useTheme();
@@ -20,15 +27,23 @@ function CriteriaSelector() {
     )
   );
 
-  const handleChange = ({ target: { value } }) => {
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
     setPersonName(typeof value === "string" ? value.split(",") : value);
   };
-
+  console.log(
+    "🚀 ~ file: CriteriaSelector.js ~ line 56 ~ CriteriaSelector ~ MenuProps",
+    MenuProps
+  );
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel>Select Criteria</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Select Criteria</InputLabel>
         <Select
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
@@ -37,11 +52,13 @@ function CriteriaSelector() {
           MenuProps={MenuProps}
         >
           {criteriaList.map((criteria) => (
-            <CriteriaItem
-              criteria={criteria}
-              theme={theme}
-              personName={personName}
-            />
+            <MenuItem
+              key={criteria}
+              value={criteria}
+              style={getStyles(criteria, personName, theme)}
+            >
+              {criteria}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
