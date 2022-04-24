@@ -7,13 +7,18 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const TeamFilter = ({ projectId }) => {
+const TeamFilter = ({ project }) => {
   const teams = useSelector((state) =>
-    state.teamReducer.teams.filter((team) => team.project === projectId)
+    state.teamReducer.teams.filter((team) => team.project === project.id)
   );
   const teamRow = teams.map((team) => (
-    <TableCell key={team.id}>{team.name}</TableCell>
+    <TableCell key={team.id}>
+      <Link to={`/projects/${project.slug}/teams/${team.slug}`}>
+        {team.name}
+      </Link>
+    </TableCell>
   ));
   return (
     <TableContainer>
