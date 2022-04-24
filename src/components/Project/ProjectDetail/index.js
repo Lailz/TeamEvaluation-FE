@@ -1,18 +1,9 @@
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
-// Components
-import TeamRow from "../Team/TeamRow";
-
 // MUI
-import {
-  Container,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Container } from "@mui/material";
+import TeamFilter from "./TeamFilter";
 
 const ProjectDetail = () => {
   const { projectSlug } = useParams();
@@ -25,16 +16,7 @@ const ProjectDetail = () => {
     <Container>
       <h2>{project.name}</h2>
       <h4>{project.semester}</h4>
-      <TableContainer>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>All</TableCell>
-              <TeamRow projectId={project.id} />
-            </TableRow>
-          </TableHead>
-        </Table>
-      </TableContainer>
+      <TeamFilter projectId={project.id} />
     </Container>
   );
 };
