@@ -5,9 +5,7 @@ import Select from "react-select";
 // MUI
 import { FormControl } from "@mui/material";
 
-function CriteriaSelector() {
-  const [selectedOption, setSelectedOption] = useState(null);
-
+function CriteriaSelector({ selectedOptions, setSelectedOptions }) {
   const criteriaOptions = useSelector((state) =>
     state.criteriaReducer.criterias.map((criteria) => ({
       value: criteria.id,
@@ -20,8 +18,8 @@ function CriteriaSelector() {
       <FormControl sx={{ m: 1, width: 300 }}>
         <Select
           isMulti
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
+          defaultValue={selectedOptions}
+          onChange={setSelectedOptions}
           options={criteriaOptions}
         />
       </FormControl>

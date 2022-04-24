@@ -16,6 +16,8 @@ function ProjectModal({ semester }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
   const [project, setProject] = useState({
     name: "",
     weight: 0,
@@ -30,7 +32,12 @@ function ProjectModal({ semester }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createProject({ semester, project, handleClose }));
+    const _project = {
+      ...project,
+      criterias: selectedOptions.map((option) => option.value),
+    };
+    console.log(_project);
+    dispatch(createProject({ semester, project: _project, handleClose }));
   };
 
   return (
@@ -63,7 +70,10 @@ function ProjectModal({ semester }) {
             InputProps={{ inputProps: { min: 0, max: 100 } }}
             autoFocus
           />
-          <CriteriaSelector />
+          <CriteriaSelector
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+          />
           <CriteriaModal />
           <Button
             type="submit"
