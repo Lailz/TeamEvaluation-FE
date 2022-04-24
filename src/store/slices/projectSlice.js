@@ -10,7 +10,7 @@ export const fetchProjectList = createAsyncThunk(
   "project/list",
   async (_, thunkAPI) => {
     try {
-      const res = await api.get("/projects/");
+      const res = await api.get("projects/");
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -22,10 +22,7 @@ export const createProject = createAsyncThunk(
   "project/create",
   async ({ semester, project, handleClose }, thunkAPI) => {
     try {
-      const res = await api.post(
-        `/semesters/${semester.id}/projects/`,
-        project
-      );
+      const res = await api.post(`semesters/${semester.id}/projects/`, project);
       handleClose();
       return res.data;
     } catch (error) {

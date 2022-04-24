@@ -10,7 +10,7 @@ export const fetchTeamList = createAsyncThunk(
   "team/list",
   async (_, thunkAPI) => {
     try {
-      const res = await api.get("/teams/");
+      const res = await api.get("teams/");
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -22,7 +22,7 @@ export const createTeam = createAsyncThunk(
   "team/create",
   async ({ project, team, handleClose }, thunkAPI) => {
     try {
-      const res = await api.post(`/projects/${project.id}/teams/`, team);
+      const res = await api.post(`projects/${project.id}/teams/`, team);
       handleClose();
       return res.data;
     } catch (error) {
