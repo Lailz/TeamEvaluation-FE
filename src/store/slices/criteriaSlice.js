@@ -10,7 +10,7 @@ export const fetchCriteriaList = createAsyncThunk(
   "criteria/list",
   async (_, thunkAPI) => {
     try {
-      const res = await api.get("/criterias");
+      const res = await api.get("criterias/");
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -20,9 +20,10 @@ export const fetchCriteriaList = createAsyncThunk(
 
 export const createCriteria = createAsyncThunk(
   "criteria/create",
-  async ({ criteria, handleClose }, thunkAPI) => {
+  async ({ criteria, handleSnackBarOpen, handleClose }, thunkAPI) => {
     try {
-      const res = await api.post("/criterias", criteria);
+      const res = await api.post("criterias/", criteria);
+      handleSnackBarOpen();
       handleClose();
       return res.data;
     } catch (error) {

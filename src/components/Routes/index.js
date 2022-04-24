@@ -13,6 +13,10 @@ const Routers = () => {
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/semesters" element={<SemesterList />} />
+      <Route
+        path="/projects/:projectSlug/teams/:teamSlug"
+        element={<ProjectDetail />}
+      />
       <Route path="/projects/:projectSlug" element={<ProjectDetail />} />
     </Routes>
   );

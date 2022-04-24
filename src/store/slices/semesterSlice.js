@@ -10,7 +10,7 @@ export const semesterListFetch = createAsyncThunk(
   "semester/list",
   async (_, thunkAPI) => {
     try {
-      const res = await api.get("/semesters");
+      const res = await api.get("semesters/");
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -22,7 +22,7 @@ export const createSemester = createAsyncThunk(
   "semester/create",
   async (semester, thunkAPI) => {
     try {
-      const res = await api.post("/semesters/create", semester);
+      const res = await api.post("semesters/", semester);
       return res.data;
     } catch (error) {
       thunkAPI.rejectWithValue("Oops! something went wrong.");
@@ -43,7 +43,5 @@ export const semesterSlice = createSlice({
     });
   },
 });
-
-// export const {  } = semesterSlice.actions;
 
 export default semesterSlice.reducer;

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 // MUI
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { modalStyle } from "./styles";
+import { createTeam } from "../../store/slices/teamSlice";
 
 // Slices
 
@@ -11,22 +12,18 @@ function TeamModal({ project }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [team, setTeam] = useState("");
-  const [teams, setTeams] = useState([]);
+  const [team, setTeam] = useState({ name: "" });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleChange = (event) => setTeam(event.target.value);
-
-  const handleAnotherTeam = () => {
-    setTeams([...teams, team]);
-    setTeam("");
-  };
+  const handleChange = (event) =>
+    setTeam({ ...team, [event.target.name]: event.target.value });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(project, teams);
+    console.log(project, team);
+    dispatch(createTeam({ project, team, handleClose }));
   };
 
   return (
@@ -35,27 +32,17 @@ function TeamModal({ project }) {
       <Modal open={open} onClose={handleClose}>
         <Box component="form" onSubmit={handleSubmit} sx={modalStyle}>
           <h2>New {project.name} Team</h2>
-          <Typography>Teams: {teams.map((team) => `${team}, `)}</Typography>
           <TextField
             margin="normal"
             fullWidth
             required
             label="Team Name"
-            name="team"
+            name="name"
             onChange={handleChange}
-            value={team}
+            value={team.name}
             autoComplete="name"
             autoFocus
           />
-          <Button
-            type="button"
-            onClick={handleAnotherTeam}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Add another team
-          </Button>
           <Button
             type="submit"
             fullWidth

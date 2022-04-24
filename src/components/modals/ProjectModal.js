@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Components
-import CriteriaModal from "./CriteriaModal";
+import CriteriaForm from "./CriteriaModal";
 import CriteriaSelector from "../Criteria/CriteriaSelector";
 
 // MUI
@@ -16,6 +16,8 @@ function ProjectModal({ semester }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
   const [project, setProject] = useState({
     name: "",
     weight: 0,
@@ -30,49 +32,58 @@ function ProjectModal({ semester }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createProject({ semester, project, handleClose }));
+    const _project = {
+      ...project,
+      criterias: selectedOptions.map((option) => option.value),
+    };
+    dispatch(createProject({ semester, project: _project, handleClose }));
   };
 
   return (
     <>
       <Button onClick={handleOpen}>New Project</Button>
       <Modal open={open} onClose={handleClose}>
-        <Box component="form" onSubmit={handleSubmit} sx={modalStyle}>
-          <h2>New {semester.name} Project</h2>
-          <TextField
-            margin="normal"
-            fullWidth
-            required
-            label="Project Name"
-            name="name"
-            onChange={handleChange}
-            value={project.name}
-            autoComplete="name"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            required
-            label="Project Weight"
-            name="weight"
-            onChange={handleChange}
-            value={project.weight}
-            autoComplete="name"
-            type="number"
-            InputProps={{ inputProps: { min: 0, max: 100 } }}
-            autoFocus
-          />
-          <CriteriaSelector />
-          <CriteriaModal />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Create Project
-          </Button>
+        <Box sx={modalStyle}>
+          <Box component="form" onSubmit={handleSubmit}>
+            <h2>New {semester.name} Project</h2>
+            <TextField
+              margin="normal"
+              fullWidth
+              required
+              label="Project Name"
+              name="name"
+              onChange={handleChange}
+              value={project.name}
+              autoComplete="name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              required
+              label="Project Weight"
+              name="weight"
+              onChange={handleChange}
+              value={project.weight}
+              autoComplete="name"
+              type="number"
+              InputProps={{ inputProps: { min: 0, max: 100 } }}
+              autoFocus
+            />
+            <CriteriaSelector
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Create Project
+            </Button>
+          </Box>
+          <CriteriaForm />
         </Box>
       </Modal>
     </>

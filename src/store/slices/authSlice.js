@@ -17,7 +17,7 @@ export const signin = createAsyncThunk(
   "auth/signin",
   async (user, thunkAPI) => {
     try {
-      const res = await api.post("/signin", user);
+      const res = await api.post("signin/", user);
       const _user = setUser(res.data.token);
       return _user;
     } catch (error) {
@@ -30,8 +30,8 @@ export const signup = createAsyncThunk(
   "auth/signup",
   async (user, thunkAPI) => {
     try {
-      await api.post("/signup", user);
-      const res = await api.post("/signin", user);
+      await api.post("signup/", user);
+      const res = await api.post("signin/", user);
       const _user = setUser(res.data.token);
       return _user;
     } catch (error) {
