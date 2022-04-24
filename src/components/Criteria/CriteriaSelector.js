@@ -2,14 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 
-// Components
-import SelectedCriteria from "./SelectedCriteria";
-
 // MUI
-import { FormControl, InputLabel } from "@mui/material";
-
-// Styles
-import { getStyles, MenuProps } from "./styles";
+import { FormControl } from "@mui/material";
 
 function CriteriaSelector() {
   const [selectedOption, setSelectedOption] = useState(null);
