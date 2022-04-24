@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Components
-import CriteriaModal from "./CriteriaModal";
+import CriteriaForm from "./CriteriaModal";
 import CriteriaSelector from "../Criteria/CriteriaSelector";
 
 // MUI
@@ -36,7 +36,6 @@ function ProjectModal({ semester }) {
       ...project,
       criterias: selectedOptions.map((option) => option.value),
     };
-    console.log(_project);
     dispatch(createProject({ semester, project: _project, handleClose }));
   };
 
@@ -44,45 +43,47 @@ function ProjectModal({ semester }) {
     <>
       <Button onClick={handleOpen}>New Project</Button>
       <Modal open={open} onClose={handleClose}>
-        <Box component="form" onSubmit={handleSubmit} sx={modalStyle}>
-          <h2>New {semester.name} Project</h2>
-          <TextField
-            margin="normal"
-            fullWidth
-            required
-            label="Project Name"
-            name="name"
-            onChange={handleChange}
-            value={project.name}
-            autoComplete="name"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            required
-            label="Project Weight"
-            name="weight"
-            onChange={handleChange}
-            value={project.weight}
-            autoComplete="name"
-            type="number"
-            InputProps={{ inputProps: { min: 0, max: 100 } }}
-            autoFocus
-          />
-          <CriteriaSelector
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-          />
-          <CriteriaModal />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Create Project
-          </Button>
+        <Box sx={modalStyle}>
+          <Box component="form" onSubmit={handleSubmit}>
+            <h2>New {semester.name} Project</h2>
+            <TextField
+              margin="normal"
+              fullWidth
+              required
+              label="Project Name"
+              name="name"
+              onChange={handleChange}
+              value={project.name}
+              autoComplete="name"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              required
+              label="Project Weight"
+              name="weight"
+              onChange={handleChange}
+              value={project.weight}
+              autoComplete="name"
+              type="number"
+              InputProps={{ inputProps: { min: 0, max: 100 } }}
+              autoFocus
+            />
+            <CriteriaSelector
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Create Project
+            </Button>
+          </Box>
+          <CriteriaForm />
         </Box>
       </Modal>
     </>
