@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // MUI
-import { Box, Button, Modal, TextField } from "@mui/material";
+import { Box, Button, Modal, Snackbar, TextField } from "@mui/material";
 import { modalStyle } from "./styles";
 
 // Slices
@@ -10,7 +10,7 @@ import { createCriteria } from "../../store/slices/criteriaSlice";
 
 function CriteriaModal() {
   const dispatch = useDispatch();
-
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [criteria, setCriteria] = useState({
     name: "",
@@ -20,12 +20,15 @@ function CriteriaModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleSnackBarOpen = () => setSnackBarOpen(true);
+  const handleSnackBarClose = () => setSnackBarOpen(false);
+
   const handleChange = (event) =>
     setCriteria({ ...criteria, [event.target.name]: event.target.value });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createCriteria({ criteria, handleClose }));
+    dispatch(createCriteria({ criteria, handleSnackBarOpen, handleClose }));
   };
 
   return (
@@ -67,6 +70,12 @@ function CriteriaModal() {
           </Button>
         </Box>
       </Modal>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={snackBarOpen}
+        onClose={handleSnackBarClose}
+        message={`New criteria: ${criteria.name} added!`}
+      />
     </>
   );
 }

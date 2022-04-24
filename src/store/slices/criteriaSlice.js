@@ -20,9 +20,10 @@ export const fetchCriteriaList = createAsyncThunk(
 
 export const createCriteria = createAsyncThunk(
   "criteria/create",
-  async ({ criteria, handleClose }, thunkAPI) => {
+  async ({ criteria, handleSnackBarOpen, handleClose }, thunkAPI) => {
     try {
       const res = await api.post("/criterias", criteria);
+      handleSnackBarOpen();
       handleClose();
       return res.data;
     } catch (error) {
