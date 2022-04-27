@@ -1,5 +1,5 @@
 // Components
-import TeamList from "../Team/TeamList";
+import ProjectTeams from "./ProjectTeams";
 import TeamModal from "../modals/TeamModal";
 
 // MUI
@@ -15,7 +15,7 @@ const ProjectItem = ({ project }) => {
         </Typography>
 
         {project.teams?.length > 0 ? (
-          <TeamList projectId={project.id} />
+          <ProjectTeams projectId={project.id} />
         ) : (
           <Typography>No teams added yet</Typography>
         )}
