@@ -8,7 +8,9 @@ export const judgeSlice = createSlice({
   name: "judge",
   initialState,
   reducers: {
-    saveJudge: (state, action) => (state.judge = action.payload),
+    saveJudge: (state, action) => {
+      state.judge = action.payload;
+    },
   },
 });
 
