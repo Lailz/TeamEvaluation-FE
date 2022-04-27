@@ -6,6 +6,7 @@ import Signin from "../Auth/Signin";
 import Signup from "../Auth/Signup";
 import JudgeForm from "../Judge/JudgeForm";
 import ProjectDetail from "../Project/ProjectDetail";
+import ReportForm from "../Report/ReportForm";
 import SemesterList from "../Semester/SemesterList";
 
 const Routers = () => {
@@ -25,8 +26,9 @@ const Routers = () => {
       />
       <Route path="/projects/:projectSlug" element={<ProjectDetail />} />
 
-      {/* Judges */}
+      {/* Judges and Grading */}
       <Route path="/projects/:projectSlug/judge" element={<JudgeForm />} />
+      <Route path="/projects/:projectSlug/grade" element={<ReportForm />} />
     </Routes>
   );
 };
