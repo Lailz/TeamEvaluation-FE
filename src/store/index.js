@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer, { checkForToken } from "./slices/authSlice";
 import criteriaReducer, { fetchCriteriaList } from "./slices/criteriaSlice";
+import judgeReducer from "./slices/judgeSlice";
 import projectReducer, { fetchProjectList } from "./slices/projectSlice";
 import semesterReducer from "./slices/semesterSlice";
 import teamReducer, { fetchTeamList } from "./slices/teamSlice";
@@ -12,6 +13,7 @@ export const store = configureStore({
     projectReducer: projectReducer,
     semesterReducer: semesterReducer,
     teamReducer: teamReducer,
+    judgeReducer: judgeReducer,
   },
 });
 

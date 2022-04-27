@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+
+// Actions
+import { saveJudge } from "../../store/slices/judgeSlice";
+
+// Components
+import Loading from "../Loading";
 
 // MUI
 import { Box, Button, TextField } from "@mui/material";
 import { modalStyle } from "../modals/styles";
-import { useParams } from "react-router";
-import Loading from "../Loading";
-
-// Slices
 
 function JudgeForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [judge, setJudge] = useState({ name: "" });
   const { projectSlug } = useParams();
 
@@ -25,7 +29,7 @@ function JudgeForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("hi");
+    dispatch(saveJudge(judge.name));
   };
 
   return (
