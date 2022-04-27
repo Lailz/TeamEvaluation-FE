@@ -6,8 +6,10 @@ import Signin from "../Auth/Signin";
 import Signup from "../Auth/Signup";
 import JudgeForm from "../Judge/JudgeForm";
 import ProjectDetail from "../Project/ProjectDetail";
+import Report from "../Report";
 import ReportForm from "../Report/ReportForm";
 import SemesterList from "../Semester/SemesterList";
+import TeamList from "../Team/TeamList";
 
 const Routers = () => {
   return (
@@ -28,7 +30,7 @@ const Routers = () => {
 
       {/* Judges and Grading */}
       <Route path="/projects/:projectSlug/judge" element={<JudgeForm />} />
-      <Route path="/projects/:projectSlug/grade" element={<ReportForm />} />
+      <Route path="/projects/:projectSlug/grade" element={<Report />} />
     </Routes>
   );
 };
