@@ -45,6 +45,4 @@ export const teamSlice = createSlice({
   },
 });
 
-// export const {  } = semesterSlice.actions;
-
 export default teamSlice.reducer;
