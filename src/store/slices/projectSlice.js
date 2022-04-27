@@ -45,6 +45,4 @@ export const projectSlice = createSlice({
   },
 });
 
-// export const {  } = semesterSlice.actions;
-
 export default projectSlice.reducer;

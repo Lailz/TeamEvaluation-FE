@@ -1,14 +1,14 @@
-import { Typography } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+// MUI
+import { Container } from "@mui/material";
+import TeamItem from "./TeamItem";
 
-const TeamList = ({ projectId }) => {
-  const teams = useSelector((state) =>
-    state.teamReducer.teams.filter((team) => team.project === projectId)
+const TeamList = ({ teams }) => {
+  const teamList = teams.map((team) => <TeamItem team={team} key={team.id} />);
+  console.log(
+    "🚀 ~ file: TeamList.js ~ line 7 ~ TeamList ~ teamList",
+    teamList
   );
-  return (
-    <Typography>Teams: {teams.map((team) => `${team.name}, `)}</Typography>
-  );
+  return <Container>{teamList}</Container>;
 };
 
 export default TeamList;

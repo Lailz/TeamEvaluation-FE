@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 // MUI
 import {
+  Button,
   Container,
   Table,
   TableCell,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 import TeamFilter from "./TeamFilter";
 import Loading from "../../Loading";
+import ShareModal from "../../modals/ShareModal";
 
 const ProjectDetail = () => {
   const { projectSlug, teamSlug } = useParams();
@@ -29,6 +31,7 @@ const ProjectDetail = () => {
     <Container>
       <h2>{project.name}</h2>
       <h4>{project.semester}</h4>
+      <ShareModal project={project} />
       <TeamFilter project={project} />
       <TableContainer>
         <Table>
