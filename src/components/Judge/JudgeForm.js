@@ -30,6 +30,7 @@ function JudgeForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(saveJudge(judge.name));
+    navigate(`/projects/${projectSlug}/grade`);
   };
 
   return (
